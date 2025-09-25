@@ -19,7 +19,7 @@ export default function SpaceDetail() {
     .reduce((sum, b) => sum + (b.seats || 1), 0);
 
   return (
-    <div className="container py-4">
+    <div className="container py-4 animated">
 
       {/* Back and Book Button */}
       <div className="d-flex justify-content-between align-items-center mb-3">

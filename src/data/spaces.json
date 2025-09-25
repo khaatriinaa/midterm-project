@@ -14,7 +14,8 @@
       "Printing Services"
     ],
     "hours": "9:00 AM - 9:00 PM",
-    "time_slots": ["9am - 1pm", "1pm - 5pm", "5pm - 9pm"]
+    "time_slots": ["9am - 1pm", "1pm - 5pm", "5pm - 9pm"],
+    "capacity": 120
   },
   {
     "id": 2,
@@ -48,7 +49,8 @@
       "Outdoor Garden"
     ],
     "hours": "10:00 AM - 7:00 PM",
-    "time_slots": ["Morning Session (10am-2pm)", "Afternoon Session (2pm-6pm)"]
+    "time_slots": ["Morning Session (10am-2pm)", "Afternoon Session (2pm-6pm)"],
+    "capacity": 100
   },
   {
     "id": 4,
@@ -65,7 +67,8 @@
       "Air-conditioned"
     ],
     "hours": "8:00 AM - 10:00 PM",
-    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 8pm"]
+    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 8pm"],
+    "capacity": 150
   },
   {
     "id": 5,
@@ -82,7 +85,8 @@
       "Extended Hours"
     ],
     "hours": "7:00 AM - 11:00 PM",
-    "time_slots": ["7am - 12nn", "12nn - 5pm", "5pm - 11pm"]
+    "time_slots": ["7am - 12nn", "12nn - 5pm", "5pm - 11pm"],
+    "capacity": 100
   },
   {
     "id": 6,
@@ -116,7 +120,8 @@
       "Quiet Zones"
     ],
     "hours": "8:00 AM - 8:00 PM",
-    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 8pm"]
+    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 8pm"],
+    "capacity": 70
   },
   {
     "id": 8,
@@ -133,7 +138,8 @@
       "Scenic Views"
     ],
     "hours": "7:00 AM - 10:00 PM",
-    "time_slots": ["7am - 12nn", "12nn - 5pm", "5pm - 10pm"]
+    "time_slots": ["7am - 12nn", "12nn - 5pm", "5pm - 10pm"],
+    "capacity": 120
   },
   {
     "id": 9,
@@ -167,7 +173,8 @@
       "Free Refreshments"
     ],
     "hours": "Open 24/7",
-    "time_slots": ["Full Day", "Night Shift (9pm-6am)"]
+    "time_slots": ["Full Day", "Night Shift (9pm-6am)"],
+    "capacity": 60
   },
   {
     "id": 11,
@@ -184,7 +191,8 @@
       "Board Games (for breaks)"
     ],
     "hours": "9:00 AM - 10:00 PM",
-    "time_slots": ["9am - 1pm", "1pm - 5pm", "5pm - 10pm"]
+    "time_slots": ["9am - 1pm", "1pm - 5pm", "5pm - 10pm"],
+    "capacity": 150
   },
   {
     "id": 12,
@@ -201,7 +209,8 @@
       "Snack Bar"
     ],
     "hours": "8:00 AM - 9:00 PM",
-    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 9pm"]
+    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 9pm"],
+    "capacity": 100
   },
   {
     "id": 13,
@@ -235,7 +244,8 @@
       "Printing Services"
     ],
     "hours": "8:00 AM - 10:00 PM",
-    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 10pm"]
+    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 10pm"],
+    "capacity": 120
   },
   {
     "id": 15,
@@ -252,6 +262,7 @@
       "Secure Lockers"
     ],
     "hours": "9:00 AM - 9:00 PM",
-    "time_slots": ["9am - 1pm", "1pm - 5pm", "5pm - 9pm"]
+    "time_slots": ["9am - 1pm", "1pm - 5pm", "5pm - 9pm"],
+    "capacity": 150
   }
 ]

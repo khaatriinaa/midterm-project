@@ -36,16 +36,14 @@ export default function BookingForm({ space }) {
 
   // Filter out expired slots (but keep Full Day / 24 Hours)
   const validSlots = (space.time_slots || []).filter((t) => {
-    if (!date || date !== today) return true; // future dates = all slots available
+    if (!date || date !== today) return true;
 
-    // Always keep full-day or 24-hour slots
     if (/full\s*day/i.test(t) || /24\s*hours?/i.test(t)) {
       return true;
     }
 
-    // Otherwise, check time range
     const [start, end] = t.split("-");
-    if (!end) return true; // in case of badly formatted slot
+    if (!end) return true;
     const endMinutes = parseTime(end);
     return currentMinutes < endMinutes;
   });
@@ -118,7 +116,6 @@ export default function BookingForm({ space }) {
   return (
     <div>
       <form onSubmit={handleSubmit} className="mt-3">
-        {/* ✅ Date Picker */}
         <label className="form-label">Select Date</label>
         <input
           type="date"
@@ -130,7 +127,6 @@ export default function BookingForm({ space }) {
             setDate(newDate);
 
             if (newDate === today) {
-              // Auto-pick first still-valid slot for today
               const nextValid =
                 (space.time_slots || []).filter((t) => {
                   if (/full\s*day/i.test(t) || /24\s*hours?/i.test(t)) return true;
@@ -141,13 +137,12 @@ export default function BookingForm({ space }) {
                 })[0] || "";
               setSlot(nextValid);
             } else {
-              // Future dates → first slot
               setSlot(space.time_slots?.[0] || "");
             }
           }}
         />
 
-        {/* ✅ Dynamic Time Slots */}
+        {/* Dynamic Time Slots */}
         <label className="form-label">Select Time Slot</label>
         <select
           className="form-select mb-3"

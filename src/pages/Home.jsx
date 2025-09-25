@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <div>
-      <section className="hero-section">
+      <section className="hero-section animated">
         <div className="hero-text">
           <h1>
             Find Your <span className="highlight">Perfect Study Space</span>

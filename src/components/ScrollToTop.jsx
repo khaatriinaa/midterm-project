@@ -3,21 +3,19 @@ import { useLocation } from "react-router-dom";
 
 export default function ScrollManager() {
   const { pathname } = useLocation();
-  const NAVBAR_HEIGHT = 70; // fixed navbar height in px
+  const NAVBAR_HEIGHT = 70;
 
   useLayoutEffect(() => {
-    // Immediately set top on Space Detail page BEFORE any rendering
+    // Immediately set top on Space Detail page
     if (pathname.startsWith("/space/")) {
-      // Force immediate top position with no animation
       document.documentElement.style.scrollBehavior = "auto";
       document.body.style.scrollBehavior = "auto";
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-      return; // Exit early to prevent any other scroll behavior
+      return;
     }
 
-    // Disable smooth scrolling temporarily for home page
     const originalScrollBehavior = document.documentElement.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = "auto";
 
@@ -25,16 +23,15 @@ export default function ScrollManager() {
       const previousScroll = sessionStorage.getItem("homeScroll");
 
       if (previousScroll !== null && document.referrer.includes("/home")) {
-        // Restore scroll only if coming from inside Home
+        // Restore scroll from Home
         const scrollY = parseInt(previousScroll, 10);
         window.scrollTo(0, scrollY);
       } else {
-        // Otherwise (navigated from another page), always reset to top
         window.scrollTo(0, 0);
       }
     }
 
-    // Restore original scroll behavior after positioning
+    // Restore original scroll
     setTimeout(() => {
       document.documentElement.style.scrollBehavior = originalScrollBehavior;
     }, 0);

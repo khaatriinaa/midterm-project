@@ -6,7 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./contexts/AuthContext";
-import ScrollToTop from "./components/ScrollToTop"; // ✅ add this
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   const { user } = useAuth();
@@ -14,9 +14,8 @@ export default function App() {
   return (
     <div>
       <Header />
-      <ScrollToTop /> {/* Makes detail page open at top */}
+      <ScrollToTop />
       <Routes>
-        {/* Default route → redirect to Login if not logged in */}
         <Route
           path="/"
           element={user ? <Navigate to="/login" /> : <Navigate to="/home" />}

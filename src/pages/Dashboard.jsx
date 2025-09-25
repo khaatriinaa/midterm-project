@@ -1,6 +1,7 @@
 import { useBookings } from "../contexts/BookingContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 export default function Dashboard() {
   const { bookings, cancelBooking } = useBookings();
@@ -70,52 +71,11 @@ export default function Dashboard() {
       )}
 
       {/* Confirmation Modal */}
-      {selectedId && (
-        <div
-          className="modal fade show d-block"
-          tabIndex="-1"
-          style={{ background: "rgba(0,0,0,0.5)" }}
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content border-0 shadow-lg rounded-3">
-              <div className="modal-header">
-                <h5 className="modal-title fw-bold text-danger">
-                  Cancel Booking
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={() => setSelectedId(null)}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p className="mb-1">
-                  Are you sure you want to cancel this booking?
-                </p>
-                <small className="text-muted">
-                  This action cannot be undone.
-                </small>
-              </div>
-              <div className="modal-footer d-flex justify-content-center gap-3 border-0">
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary px-4 rounded-pill"
-                  onClick={() => setSelectedId(null)}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-danger px-4 rounded-pill shadow-sm"
-                  onClick={handleConfirm}
-                >
-                  Confirm
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <ConfirmationModal 
+        show={!!selectedId} 
+        onClose={() => setSelectedId(null)} 
+        onConfirm={handleConfirm} 
+      />
     </div>
   );
 }

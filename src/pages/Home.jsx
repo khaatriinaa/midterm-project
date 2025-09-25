@@ -27,7 +27,6 @@ export default function Home() {
 
   return (
     <div>
-      {/* Full Screen Hero */}
       <section className="hero-section">
         <div className="hero-text">
           <h1>

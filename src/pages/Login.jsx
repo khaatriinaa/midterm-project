@@ -20,12 +20,12 @@ export default function Login() {
       success = login(email, password);
     }
 
-    if (success) navigate("/home"); // ✅ Redirect to Home
+    if (success) navigate("/home");
   };
 
   const handleGuestLogin = () => {
     loginAsGuest();
-    navigate("/home"); // ✅ Redirect to Home
+    navigate("/home");
   };
 
   return (

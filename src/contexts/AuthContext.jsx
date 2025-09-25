@@ -5,12 +5,13 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState(() => {
+    
     // Load registered users from localStorage
     const storedUsers = localStorage.getItem("users");
     return storedUsers ? JSON.parse(storedUsers) : [];
   });
 
-  // ✅ Load logged-in user from localStorage
+  // Load logged-in user from localStorage
   useEffect(() => {
     const storedUser = localStorage.getItem("authUser");
     if (storedUser) {
@@ -18,7 +19,7 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  // ✅ Save user + users to localStorage whenever they change
+  // Save user + users to localStorage whenever they change
   useEffect(() => {
     if (user) {
       localStorage.setItem("authUser", JSON.stringify(user));

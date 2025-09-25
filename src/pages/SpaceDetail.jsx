@@ -20,7 +20,8 @@ export default function SpaceDetail() {
 
   return (
     <div className="container py-4">
-      {/* Action Buttons (Back & Book Now) */}
+
+      {/* Back and Book Button */}
       <div className="d-flex justify-content-between align-items-center mb-3">
         <button
           className="btn btn-secondary px-4 py-2 fw-semibold"
@@ -39,7 +40,6 @@ export default function SpaceDetail() {
         </button>
       </div>
 
-      {/* Top full image */}
       <div className="card shadow-sm border-0 mb-4">
         <img
           src={space.main_image}
@@ -55,7 +55,7 @@ export default function SpaceDetail() {
         <p className="text-muted mb-3">{space.location}</p>
         <p className="mb-4">{space.description}</p>
 
-        {/* ✅ Hours of Operation */}
+        {/* Hours of Operation */}
         <h5 className="fw-semibold">Hours</h5>
         <p className="mb-4">{space.hours}</p>
 

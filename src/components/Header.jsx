@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <nav className="navbar navbar-expand-lg custom-navbar px-3">
       <Link className="navbar-brand" to="/home">
-        My App
+        StudyNook
       </Link>
 
       <div className="ms-auto d-flex align-items-center gap-3">

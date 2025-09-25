@@ -14,7 +14,7 @@ export default function Dashboard() {
 
   return (
     <div className="container py-4">
-      <h2 className="mb-4 fw-bold text-primary">📌 My Bookings</h2>
+      <h2 className="mb-4 fw-bold text-theme">My Bookings</h2>
 
       {bookings.length === 0 ? (
         <div className="card border-0 shadow-sm rounded-3 text-center p-5">
@@ -25,7 +25,7 @@ export default function Dashboard() {
             Start booking your space now to secure your slot.
           </p>
           <button
-            className="btn btn-primary px-4 fw-semibold rounded-pill shadow-sm"
+            className="book-btn px-4 py-2 fw-semibold text-white w-100"
             onClick={() => navigate("/home")}
           >
             <i className="bi bi-plus-circle me-2"></i> Book a Space

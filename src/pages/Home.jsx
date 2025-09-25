@@ -18,7 +18,11 @@ export default function Home() {
   );
 
   const handleDiscoverClick = () => {
-    spacesRef.current.scrollIntoView({ behavior: "smooth" });
+    spacesRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
   };
 
   return (

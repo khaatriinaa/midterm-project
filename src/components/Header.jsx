@@ -23,7 +23,7 @@ export default function Header() {
               Hello, {user.fullName === "Guest" ? "Guest" : user.fullName}!
             </span>
 
-            {/* ✅ Show My Bookings only for logged-in users */}
+            {/* Show My Bookings only for logged-in users */}
             {user.fullName !== "Guest" && (
               <button
                 className="btn btn-info"

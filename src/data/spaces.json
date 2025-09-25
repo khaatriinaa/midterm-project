@@ -49,5 +49,209 @@
     ],
     "hours": "10:00 AM - 7:00 PM",
     "time_slots": ["Morning Session (10am-2pm)", "Afternoon Session (2pm-6pm)"]
+  },
+  {
+    "id": 4,
+    "name": "Davao ThinkSpace",
+    "location": "Davao City",
+    "price": 280,
+    "main_image": "https://images.squarespace-cdn.com/content/v1/5e9fc97d8fb5665bc4d74ee2/b9de5417-7856-4421-a793-02581997e2a6/x05-moxatscape.png",
+    "description": "A modern workspace with dedicated study pods and private rooms perfect for students and freelancers in Mindanao.",
+    "amenities": [
+      "Wi-Fi 200mbps",
+      "Private Study Pods",
+      "Free Coffee",
+      "CCTV Security",
+      "Air-conditioned"
+    ],
+    "hours": "8:00 AM - 10:00 PM",
+    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 8pm"]
+  },
+  {
+    "id": 5,
+    "name": "StudyHub Manila",
+    "location": "Manila City",
+    "price": 220,
+    "main_image": "https://mossylog.org/wp-content/uploads/2022/02/leo-bernstein-newman-library.jpeg",
+    "description": "A budget-friendly yet functional study space with quiet rooms and reliable internet connection.",
+    "amenities": [
+      "Fast Wi-Fi",
+      "Printing Services",
+      "Air-conditioned",
+      "Snack Bar",
+      "Extended Hours"
+    ],
+    "hours": "7:00 AM - 11:00 PM",
+    "time_slots": ["7am - 12nn", "12nn - 5pm", "5pm - 11pm"]
+  },
+  {
+    "id": 6,
+    "name": "Batangas Study Lounge",
+    "location": "Batangas City",
+    "price": 200,
+    "main_image": "https://osdoro.com.sg/wp-content/uploads/2020/12/380-Jalan-Besar-WeWork-209000-Singapore-3-scaled.jpg",
+    "description": "A student-friendly environment in Batangas with comfortable seating and affordable rates.",
+    "amenities": [
+      "Wi-Fi",
+      "Unlimited Coffee",
+      "Charging Stations",
+      "Group Tables",
+      "Whiteboards"
+    ],
+    "hours": "9:00 AM - 9:00 PM",
+    "time_slots": ["Morning (9am-1pm)", "Afternoon (1pm-5pm)", "Evening (5pm-9pm)"]
+  },
+  {
+    "id": 7,
+    "name": "Laguna Learning Loft",
+    "location": "Santa Rosa, Laguna",
+    "price": 250,
+    "main_image": "https://officesnapshots.com/wp-content/uploads/2023/12/justco-one-city-centre-coworking-offices-bangkok-5.jpg",
+    "description": "A study loft designed for students in Laguna, combining comfort with productivity-focused amenities.",
+    "amenities": [
+      "Wi-Fi",
+      "Free Tea",
+      "Air-conditioning",
+      "Open Library",
+      "Quiet Zones"
+    ],
+    "hours": "8:00 AM - 8:00 PM",
+    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 8pm"]
+  },
+  {
+    "id": 8,
+    "name": "Baguio Peak Study Café",
+    "location": "Baguio City",
+    "price": 270,
+    "main_image": "https://officesnapshots.com/wp-content/uploads/2023/12/justco-one-city-centre-coworking-offices-bangkok-1200x614-compact.jpg",
+    "description": "A cozy mountain-view café with spaces for both casual studying and serious academic sessions.",
+    "amenities": [
+      "Wi-Fi",
+      "Heated Rooms",
+      "Coffee & Pastries",
+      "Power Outlets",
+      "Scenic Views"
+    ],
+    "hours": "7:00 AM - 10:00 PM",
+    "time_slots": ["7am - 12nn", "12nn - 5pm", "5pm - 10pm"]
+  },
+  {
+    "id": 9,
+    "name": "Iloilo Brainery",
+    "location": "Iloilo City",
+    "price": 230,
+    "main_image": "https://techmeetups.com/wp-content/uploads/2024/02/TSH-Collab.jpg",
+    "description": "A collaborative space in Iloilo designed for group studies and academic reviews.",
+    "amenities": [
+      "High-speed Wi-Fi",
+      "Group Study Rooms",
+      "Printing Services",
+      "Unlimited Coffee",
+      "Projectors"
+    ],
+    "hours": "9:00 AM - 8:00 PM",
+    "time_slots": ["Morning (9am-1pm)", "Afternoon (1pm-5pm)"]
+  },
+  {
+    "id": 10,
+    "name": "Clark Knowledge Hub",
+    "location": "Clark, Pampanga",
+    "price": 320,
+    "main_image": "https://singaporeyou.com/wp-content/uploads/2023/10/Coworking-Space-in-Singapore.jpg",
+    "description": "A premium learning and co-working center for professionals and students in Pampanga.",
+    "amenities": [
+      "Ultra-fast Wi-Fi",
+      "Meeting Pods",
+      "24/7 Access",
+      "Ergonomic Furniture",
+      "Free Refreshments"
+    ],
+    "hours": "Open 24/7",
+    "time_slots": ["Full Day", "Night Shift (9pm-6am)"]
+  },
+  {
+    "id": 11,
+    "name": "Quezon Study Loft",
+    "location": "Lucena City, Quezon",
+    "price": 210,
+    "main_image": "https://www.workthere.com/media/elqbnc2q/eed3cc42-39a1-11ed-838f-0adb0235.png?anchor=center&mode=crop&width=800&rnd=133680277714670000",
+    "description": "A laid-back loft space ideal for university students and freelancers in Lucena.",
+    "amenities": [
+      "Wi-Fi",
+      "Study Pods",
+      "Coffee Bar",
+      "Air-conditioned",
+      "Board Games (for breaks)"
+    ],
+    "hours": "9:00 AM - 10:00 PM",
+    "time_slots": ["9am - 1pm", "1pm - 5pm", "5pm - 10pm"]
+  },
+  {
+    "id": 12,
+    "name": "GenSan StudyWorks",
+    "location": "General Santos City",
+    "price": 240,
+    "main_image": "https://cdn-images.wework.com/images/59CEE848-8C00-11EB-9124-0E6A5DC689CD/59cee848-8c00-11eb-9124-0e6a5dc689cd_0.jpg?width=800",
+    "description": "A quiet and affordable study spot catering to students in General Santos City.",
+    "amenities": [
+      "Wi-Fi",
+      "Free Water & Coffee",
+      "Air-conditioned",
+      "Charging Stations",
+      "Snack Bar"
+    ],
+    "hours": "8:00 AM - 9:00 PM",
+    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 9pm"]
+  },
+  {
+    "id": 13,
+    "name": "Palawan Study Corner",
+    "location": "Puerto Princesa, Palawan",
+    "price": 260,
+    "main_image": "https://images.squarespace-cdn.com/content/v1/6440d46855729532d4bccedc/10a9c7d5-b214-4233-a05b-d80420e73a0d/v2-dcotv-g624k.jpg",
+    "description": "A tropical-inspired study space offering a mix of relaxation and productivity in Palawan.",
+    "amenities": [
+      "Wi-Fi",
+      "Outdoor Study Area",
+      "Free Coffee",
+      "Air-conditioned",
+      "Nature View"
+    ],
+    "hours": "9:00 AM - 8:00 PM",
+    "time_slots": ["Morning (9am-1pm)", "Afternoon (1pm-5pm)"]
+  },
+    {
+    "id": 14,
+    "name": "CamSur Study Café",
+    "location": "Naga City, Camarines Sur",
+    "price": 220,
+    "main_image": "https://image-mgt.sgp1.cdn.digitaloceanspaces.com/spaces/GetSpacesLanding/rent-study-area-in-singapore/1280_1606476325430.jpeg",
+    "description": "A warm café-style study space in Naga with strong internet and budget-friendly study packages.",
+    "amenities": [
+      "Wi-Fi",
+      "Coffee & Pastries",
+      "Air-conditioned",
+      "Quiet Study Rooms",
+      "Printing Services"
+    ],
+    "hours": "8:00 AM - 10:00 PM",
+    "time_slots": ["8am - 12nn", "12nn - 4pm", "4pm - 10pm"]
+  },
+  {
+    "id": 15,
+    "name": "Zamboanga MindSpace",
+    "location": "Zamboanga City",
+    "price": 250,
+    "main_image": "https://thesmartlocal.com/wp-content/uploads/2023/09/free-study-spots-singapore-Khoo-Teck-Puat-Hospital-NTUC.png",
+    "description": "A modern study and co-working hub in Zamboanga, perfect for both students and professionals.",
+    "amenities": [
+      "High-speed Wi-Fi",
+      "Air-conditioned",
+      "Study Pods",
+      "Unlimited Coffee",
+      "Secure Lockers"
+    ],
+    "hours": "9:00 AM - 9:00 PM",
+    "time_slots": ["9am - 1pm", "1pm - 5pm", "5pm - 9pm"]
   }
 ]

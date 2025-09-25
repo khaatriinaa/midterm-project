@@ -6,22 +6,56 @@ import { useNavigate } from "react-router-dom";
 export default function BookingForm({ space }) {
   const { user } = useAuth();
   const { bookings, addBooking } = useBookings();
-  const [slot, setSlot] = useState(space.time_slots?.[0] || ""); // ✅ first slot by default
+  const [slot, setSlot] = useState(space.time_slots?.[0] || "");
   const [seats, setSeats] = useState(1);
-  const [date, setDate] = useState(""); // ✅ booking date
+  const [date, setDate] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
 
   const capacity = space.capacity || 50;
+  const totalBooked = bookings
+    .filter((b) => b.spaceId === space.id)
+    .reduce((sum, b) => sum + (b.seats || 1), 0);
 
-  // ✅ Count how many are booked for this space + slot + date
+  // Parse time string into minutes since midnight
+  const parseTime = (timeStr) => {
+    const match = timeStr.match(/(\d+)(?::(\d+))?\s*(am|pm)/i);
+    if (!match) return 0;
+    let hours = parseInt(match[1], 10);
+    const minutes = parseInt(match[2] || "0", 10);
+    const period = match[3].toLowerCase();
+    if (period === "pm" && hours !== 12) hours += 12;
+    if (period === "am" && hours === 12) hours = 0;
+    return hours * 60 + minutes;
+  };
+
+  // Get current date + time
+  const now = new Date();
+  const today = now.toISOString().split("T")[0];
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+  // Filter out expired slots (but keep Full Day / 24 Hours)
+  const validSlots = (space.time_slots || []).filter((t) => {
+    if (!date || date !== today) return true; // future dates = all slots available
+
+    // Always keep full-day or 24-hour slots
+    if (/full\s*day/i.test(t) || /24\s*hours?/i.test(t)) {
+      return true;
+    }
+
+    // Otherwise, check time range
+    const [start, end] = t.split("-");
+    if (!end) return true; // in case of badly formatted slot
+    const endMinutes = parseTime(end);
+    return currentMinutes < endMinutes;
+  });
+
+  // Count how many are booked for this space + slot + date
   const bookedCount = bookings
     .filter((b) => b.spaceId === space.id && b.slot === slot && b.date === date)
     .reduce((sum, b) => sum + (b.seats || 1), 0);
 
   const available = capacity - bookedCount;
-
-  const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -91,7 +125,26 @@ export default function BookingForm({ space }) {
           className="form-control mb-3"
           value={date}
           min={today}
-          onChange={(e) => setDate(e.target.value)}
+          onChange={(e) => {
+            const newDate = e.target.value;
+            setDate(newDate);
+
+            if (newDate === today) {
+              // Auto-pick first still-valid slot for today
+              const nextValid =
+                (space.time_slots || []).filter((t) => {
+                  if (/full\s*day/i.test(t) || /24\s*hours?/i.test(t)) return true;
+                  const [start, end] = t.split("-");
+                  if (!end) return true;
+                  const endMinutes = parseTime(end);
+                  return currentMinutes < endMinutes;
+                })[0] || "";
+              setSlot(nextValid);
+            } else {
+              // Future dates → first slot
+              setSlot(space.time_slots?.[0] || "");
+            }
+          }}
         />
 
         {/* ✅ Dynamic Time Slots */}
@@ -101,14 +154,14 @@ export default function BookingForm({ space }) {
           value={slot}
           onChange={(e) => setSlot(e.target.value)}
         >
-          {space.time_slots && space.time_slots.length > 0 ? (
-            space.time_slots.map((t, i) => (
+          {validSlots.length > 0 ? (
+            validSlots.map((t, i) => (
               <option key={i} value={t}>
                 {t}
               </option>
             ))
           ) : (
-            <option disabled>No time slots available</option>
+            <option disabled>No time slots available today</option>
           )}
         </select>
 
@@ -125,17 +178,14 @@ export default function BookingForm({ space }) {
 
         <p className="text-muted small mb-3">
           Capacity: {capacity} <br />
-          Already booked: {bookedCount} <br />
-          Available:{" "}
-          <strong className={available <= 0 ? "text-danger" : ""}>
-            {available}
-          </strong>
+          Already booked: {totalBooked} <br />
+          Available: {capacity - totalBooked}
         </p>
 
         <button
           type="submit"
-          className="btn btn-success w-100"
-          disabled={available <= 0}
+          className="book-btn px-4 py-2 fw-semibold text-white w-100"
+          disabled={available <= 0 || validSlots.length === 0}
         >
           Book Now
         </button>
@@ -170,12 +220,12 @@ export default function BookingForm({ space }) {
               </div>
               <div className="modal-footer">
                 <button
-                  className="btn btn-secondary"
+                  className="fw-semibold btn-secondary"
                   onClick={() => setShowConfirm(false)}
                 >
                   Cancel
                 </button>
-                <button className="btn btn-primary" onClick={confirmBooking}>
+                <button className="btn-primary" onClick={confirmBooking}>
                   Confirm
                 </button>
               </div>

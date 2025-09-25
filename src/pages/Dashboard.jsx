@@ -1,36 +1,121 @@
 import { useBookings } from "../contexts/BookingContext";
 import { useState } from "react";
-import ConfirmationModal from "../components/ConfirmationModal";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const { bookings, cancelBooking } = useBookings();
   const [selectedId, setSelectedId] = useState(null);
+  const navigate = useNavigate();
+
+  const handleConfirm = () => {
+    cancelBooking(selectedId);
+    setSelectedId(null);
+  };
 
   return (
     <div className="container py-4">
-      <h2>My Bookings</h2>
+      <h2 className="mb-4 fw-bold text-primary">📌 My Bookings</h2>
+
       {bookings.length === 0 ? (
-        <p>No bookings yet.</p>
+        <div className="card border-0 shadow-sm rounded-3 text-center p-5">
+          <h5 className="fw-bold text-secondary mb-3">
+            You don’t have any bookings yet
+          </h5>
+          <p className="text-muted mb-4">
+            Start booking your space now to secure your slot.
+          </p>
+          <button
+            className="btn btn-primary px-4 fw-semibold rounded-pill shadow-sm"
+            onClick={() => navigate("/home")}
+          >
+            <i className="bi bi-plus-circle me-2"></i> Book a Space
+          </button>
+        </div>
       ) : (
-        <ul className="list-group">
+        <div className="row g-3">
           {bookings.map((b) => (
-            <li key={b.id} className="list-group-item d-flex justify-content-between align-items-center">
-              {b.spaceName} - {b.slot}
-              <button className="btn btn-danger btn-sm" onClick={() => setSelectedId(b.id)}>
-                Cancel
-              </button>
-            </li>
+            <div key={b.id} className="col-md-6 col-lg-4">
+              <div className="card shadow-sm border-0 rounded-3 h-100 booking-card">
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title text-dark fw-bold">{b.spaceName}</h5>
+                  <p className="card-text text-muted mb-1">
+                    <i className="bi bi-calendar-event me-2"></i>
+                    <strong>Date:</strong> {b.date}
+                  </p>
+                  <p className="card-text text-muted mb-1">
+                    <i className="bi bi-clock me-2"></i>
+                    <strong>Slot:</strong> {b.slot}
+                  </p>
+                  <p className="card-text text-muted mb-3">
+                    <i className="bi bi-people me-2"></i>
+                    <strong>Seats:</strong> {b.seats}
+                  </p>
+
+                  <div className="mt-auto d-flex justify-content-between align-items-center">
+                    <span className="badge bg-success px-3 py-2">
+                      Active Booking
+                    </span>
+                    <button
+                      className="btn btn-danger btn-sm rounded-pill shadow-sm"
+                      onClick={() => setSelectedId(b.id)}
+                    >
+                      <i className="bi bi-x-circle me-1"></i> Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
-      <ConfirmationModal
-        show={!!selectedId}
-        onConfirm={() => {
-          cancelBooking(selectedId);
-          setSelectedId(null);
-        }}
-        onCancel={() => setSelectedId(null)}
-      />
+
+      {/* Confirmation Modal */}
+      {selectedId && (
+        <div
+          className="modal fade show d-block"
+          tabIndex="-1"
+          style={{ background: "rgba(0,0,0,0.5)" }}
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content border-0 shadow-lg rounded-3">
+              <div className="modal-header">
+                <h5 className="modal-title fw-bold text-danger">
+                  Cancel Booking
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setSelectedId(null)}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p className="mb-1">
+                  Are you sure you want to cancel this booking?
+                </p>
+                <small className="text-muted">
+                  This action cannot be undone.
+                </small>
+              </div>
+              <div className="modal-footer d-flex justify-content-center gap-3 border-0">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary px-4 rounded-pill"
+                  onClick={() => setSelectedId(null)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger px-4 rounded-pill shadow-sm"
+                  onClick={handleConfirm}
+                >
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

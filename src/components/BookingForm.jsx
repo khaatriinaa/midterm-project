@@ -6,18 +6,22 @@ import { useNavigate } from "react-router-dom";
 export default function BookingForm({ space }) {
   const { user } = useAuth();
   const { bookings, addBooking } = useBookings();
-  const [slot, setSlot] = useState(space.time_slots[0]);
+  const [slot, setSlot] = useState(space.time_slots?.[0] || ""); // ✅ first slot by default
   const [seats, setSeats] = useState(1);
+  const [date, setDate] = useState(""); // ✅ booking date
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
 
   const capacity = space.capacity || 50;
 
+  // ✅ Count how many are booked for this space + slot + date
   const bookedCount = bookings
-    .filter((b) => b.spaceId === space.id && b.slot === slot)
+    .filter((b) => b.spaceId === space.id && b.slot === slot && b.date === date)
     .reduce((sum, b) => sum + (b.seats || 1), 0);
 
   const available = capacity - bookedCount;
+
+  const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +35,21 @@ export default function BookingForm({ space }) {
     if (user.fullName === "Guest") {
       alert("Guests cannot book. Please log in with an account.");
       navigate("/login");
+      return;
+    }
+
+    if (!date) {
+      alert("Please select a booking date.");
+      return;
+    }
+
+    if (date < today) {
+      alert("You cannot book past dates.");
+      return;
+    }
+
+    if (!slot) {
+      alert("Please select a time slot.");
       return;
     }
 
@@ -53,26 +72,44 @@ export default function BookingForm({ space }) {
       spaceId: space.id,
       spaceName: space.name,
       slot,
+      date,
       seats,
       user: user.fullName,
     });
     setShowConfirm(false);
 
-    navigate("/dashboard/my-bookings"); // ✅ redirect after confirm
+    navigate("/dashboard/my-bookings");
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit} className="mt-3">
+        {/* ✅ Date Picker */}
+        <label className="form-label">Select Date</label>
+        <input
+          type="date"
+          className="form-control mb-3"
+          value={date}
+          min={today}
+          onChange={(e) => setDate(e.target.value)}
+        />
+
+        {/* ✅ Dynamic Time Slots */}
         <label className="form-label">Select Time Slot</label>
         <select
           className="form-select mb-3"
           value={slot}
           onChange={(e) => setSlot(e.target.value)}
         >
-          {space.time_slots.map((t, i) => (
-            <option key={i}>{t}</option>
-          ))}
+          {space.time_slots && space.time_slots.length > 0 ? (
+            space.time_slots.map((t, i) => (
+              <option key={i} value={t}>
+                {t}
+              </option>
+            ))
+          ) : (
+            <option disabled>No time slots available</option>
+          )}
         </select>
 
         <label className="form-label">Number of Seats</label>
@@ -123,8 +160,8 @@ export default function BookingForm({ space }) {
               <div className="modal-body">
                 <p>
                   You are booking <strong>{seats}</strong> seat(s) at{" "}
-                  <strong>{space.name}</strong> for the slot:{" "}
-                  <strong>{slot}</strong>.
+                  <strong>{space.name}</strong> on <strong>{date}</strong> for
+                  the slot: <strong>{slot}</strong>.
                 </p>
                 <p>
                   Remaining after booking:{" "}

@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom"; // <-- added useNavigate
+import { useParams, useNavigate } from "react-router-dom"; 
 import { useState } from "react";
 import spaces from "../data/spaces.json";
 import BookingForm from "../components/BookingForm";
@@ -6,7 +6,7 @@ import { useBookings } from "../contexts/BookingContext";
 
 export default function SpaceDetail() {
   const { spaceId } = useParams();
-  const navigate = useNavigate(); // <-- added navigate
+  const navigate = useNavigate();
   const space = spaces.find((s) => s.id === parseInt(spaceId));
   const { bookings } = useBookings();
   const [showModal, setShowModal] = useState(false);
@@ -20,13 +20,24 @@ export default function SpaceDetail() {
 
   return (
     <div className="container py-4">
-      {/* Back Button */}
-      <button
-        className="btn btn-secondary mb-3"
-        onClick={() => navigate(-1)} // <-- go back to previous page
-      >
-        &larr; Back
-      </button>
+      {/* Action Buttons (Back & Book Now) */}
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <button
+          className="btn btn-secondary px-4 py-2 fw-semibold"
+          onClick={() => navigate(-1)}
+          style={{ width: "auto" }}
+        >
+          &larr; Back
+        </button>
+
+        <button
+          className="book-btn px-4 py-2 fw-semibold text-white"
+          onClick={() => setShowModal(true)}
+          style={{ width: "auto" }}
+        >
+          Book Now
+        </button>
+      </div>
 
       {/* Top full image */}
       <div className="card shadow-sm border-0 mb-4">
@@ -44,6 +55,10 @@ export default function SpaceDetail() {
         <p className="text-muted mb-3">{space.location}</p>
         <p className="mb-4">{space.description}</p>
 
+        {/* ✅ Hours of Operation */}
+        <h5 className="fw-semibold">Hours</h5>
+        <p className="mb-4">{space.hours}</p>
+
         {/* Amenities */}
         <h5 className="fw-semibold">Amenities</h5>
         <ul className="mb-4">
@@ -60,15 +75,6 @@ export default function SpaceDetail() {
         </div>
       </div>
 
-      {/* Booking Button */}
-      <div className="text-center">
-        <button
-          className="btn btn-primary px-4 py-2 fw-semibold"
-          onClick={() => setShowModal(true)}
-        >
-          Book Now
-        </button>
-      </div>
 
       {/* Modal */}
       {showModal && (

@@ -3,6 +3,7 @@ import { useState } from "react";
 import spaces from "../data/spaces.json";
 import BookingForm from "../components/BookingForm";
 import { useBookings } from "../contexts/BookingContext";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function SpaceDetail() {
   const { spaceId } = useParams();
@@ -10,6 +11,7 @@ export default function SpaceDetail() {
   const space = spaces.find((s) => s.id === parseInt(spaceId));
   const { bookings } = useBookings();
   const [showModal, setShowModal] = useState(false);
+  const { user } = useAuth();
 
   if (!space) return <p>Space not found.</p>;
 
@@ -31,23 +33,36 @@ export default function SpaceDetail() {
           &larr; Back
         </button>
 
-        <button
-          className="book-btn px-4 py-2 fw-semibold text-white"
-          onClick={() => setShowModal(true)}
-          style={{ width: "auto" }}
-        >
-          Book Now
-        </button>
-      </div>
+        {!user || user.fullName === "Guest" ? (
+          <button
+            className="btn btn-warning px-4 py-2 fw-semibold"
+            onClick={() => {
+              alert("You need to log in first.");
+              navigate("/login");
+            }}
+            style={{ width: "auto" }}
+          >
+            Log in to Book
+          </button>
+        ) : (
+          <button
+            className="book-btn px-4 py-2 fw-semibold text-white"
+            onClick={() => setShowModal(true)}
+            style={{ width: "auto" }}
+          >
+            Book Now
+          </button>
+        )}
+        </div>
 
-      <div className="card shadow-sm border-0 mb-4">
-        <img
-          src={space.main_image}
-          alt={space.name}
-          className="card-img-top"
-          style={{ objectFit: "cover", height: "400px" }}
-        />
-      </div>
+        <div className="card shadow-sm border-0 mb-4">
+          <img
+            src={space.main_image}
+            alt={space.name}
+            className="card-img-top"
+            style={{ objectFit: "cover", height: "400px" }}
+          />
+        </div>
 
       {/* Details */}
       <div className="card shadow-sm border-0 p-4 mb-4">

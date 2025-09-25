@@ -57,7 +57,7 @@ export default function Dashboard() {
                       Active Booking
                     </span>
                     <button
-                      className="btn btn-danger btn-sm rounded-pill shadow-sm"
+                      className="btn btn-danger btn-sm shadow-sm rounded-3"
                       onClick={() => setSelectedId(b.id)}
                     >
                       <i className="bi bi-x-circle me-1"></i> Cancel

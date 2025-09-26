@@ -166,13 +166,30 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero-section {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   min-height: 90vh;
   padding: 3rem 8% 2rem;
-  background: linear-gradient(to right, #f3e8ff, #fff);
+  color: #fff;
+  height: 100vh; /* full screen height */
+  background: url("https://cdn.indesignlive.com/wp-content/uploads/Herman-Miller-The-Future-of-Work-POV-03.jpg") no-repeat center center/cover;
+  background-size: cover;
+}
+
+.hero-section .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.hero-section .hero-text,
+.hero-section .hero-image {
+  position: relative;
+  z-index: 2; /* keep them above background + overlay */
 }
 
 .hero-text {
@@ -182,13 +199,14 @@ body {
 }
 .hero-text h1 {
   font-size: 3rem;
-  color: #2d2d2d;
+  color: #fff;
   line-height: 1.2;
 }
 .hero-text .highlight { color: #7b2cbf; }
+.hero-text .home { color: #fff; }
 .hero-text p {
   margin: 1.5rem 0;
-  color: #4b2e83;
+  color: #fff;
   font-size: 1.1rem;
 }
 
@@ -201,7 +219,7 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
-.discover-btn:hover { background: #5a189a; }
+.discover-btn:hover { background: #5a189a; color: #fff;}
 
 .hero-image {
   flex: 1;

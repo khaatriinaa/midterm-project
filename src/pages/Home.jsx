@@ -28,9 +28,10 @@ export default function Home() {
   return (
     <div>
       <section className="hero-section animated">
+        <div className="overlay"></div>
         <div className="hero-text">
           <h1>
-            Find Your <span className="highlight">Perfect Study Space</span>
+            Find Your <span className="home">Perfect Study Space</span>
           </h1>
           <p>
             Search, discover, and book study rooms in just a few clicks. 
